@@ -1,0 +1,11 @@
+__pycache__/
+.venv/
+.pytest_cache/
+.coverage
+.DS_Store
+coverage.xml
+dist/
+tempCodeRunnerFile.py
+.mypy_cache/
+*.rdb
+.env
