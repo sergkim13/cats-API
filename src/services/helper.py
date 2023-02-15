@@ -3,7 +3,7 @@ import statistics
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.database.crud import HelperCRUD
+from src.database.crud.helper_crud import HelperCRUD
 from src.database.database_settings import get_session
 
 
