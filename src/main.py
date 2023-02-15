@@ -1,5 +1,7 @@
-from fastapi import FastAPI
 from http import HTTPStatus
+
+from fastapi import FastAPI
+
 from src.api.v_0_1.routers.helper import router as helper_router
 
 app = FastAPI(
@@ -9,6 +11,6 @@ app = FastAPI(
 app.include_router(helper_router)
 
 
-@app.get(path='/ping', summary='Ping api', tags=['Ping'], status_code=HTTPStatus.OK)
+@app.get(path="/ping", summary="Ping api", tags=["Ping"], status_code=HTTPStatus.OK)
 def ping():
     return f"{app.title}. Version {app.version}"

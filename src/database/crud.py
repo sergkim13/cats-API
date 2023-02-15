@@ -1,7 +1,8 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import func, select, insert
-from src.database.models import Cats, CatColorsInfo, CatsStat
+from sqlalchemy import func, insert, select
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from src.database.models import CatColorsInfo, Cats, CatsStat
 
 
 class HelperCRUD:
@@ -28,13 +29,12 @@ class HelperCRUD:
         result = await self.session.execute(query)
         return result.scalar_one()
 
-
     async def insert_color_count(self, color: str, count: int):
         stmt = insert(CatColorsInfo).values(color=color, count=count)
         try:
             await self.session.execute(stmt)
             await self.session.commit()
-            return 'OK'
+            return "OK"
         except IntegrityError:
             return f"Key '{color}' already exists."
 
@@ -42,4 +42,4 @@ class HelperCRUD:
         stmt = insert(CatsStat).values(values)
         await self.session.execute(stmt)
         await self.session.commit()
-        return 'OK'
+        return "OK"
