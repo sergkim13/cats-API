@@ -1,12 +1,13 @@
-from logging.config import fileConfig
 import asyncio
-
-from sqlalchemy.ext.asyncio import async_engine_from_config
-from sqlalchemy import pool
-from sqlalchemy.engine import Connection
+from logging.config import fileConfig
 
 from alembic import context
-from src.config_settings.config import DB_HOST, DB_PORT, DB_NAME, DB_PASS, DB_USER
+from sqlalchemy import pool
+from sqlalchemy.engine import Connection
+from sqlalchemy.ext.asyncio import async_engine_from_config
+
+from src.config_settings.config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
+
 # from src.database.database_settings import Base, metadata
 from src.database.models import Base
 
