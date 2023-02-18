@@ -1,4 +1,3 @@
-from sqlalchemy import MetaData
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
@@ -9,9 +8,6 @@ SQLALCHEMY_DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{
 
 class Base(DeclarativeBase):
     pass
-
-
-metadata = MetaData()
 
 
 engine = create_async_engine(SQLALCHEMY_DATABASE_URL, echo=True)
