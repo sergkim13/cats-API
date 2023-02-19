@@ -15,5 +15,8 @@ router = APIRouter(
     path="",
     status_code=HTTPStatus.OK,
 )
-async def get_cats(cats_service: CatsService = Depends(get_cats_service), query: CatsQuery = Depends()):
+async def get_cats(
+    cats_service: CatsService = Depends(get_cats_service),
+    query: CatsQuery = Depends(),
+):
     return await cats_service.get_cats_list(query)

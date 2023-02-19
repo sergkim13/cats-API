@@ -2,10 +2,11 @@ import asyncio
 
 import pytest_asyncio
 from httpx import AsyncClient
+from sqlalchemy import insert
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 from src.database.database_settings import get_session
-from src.database.models import Base
+from src.database.models import Base, Cats
 from src.main import app
 
 # Test database fixtures
@@ -51,3 +52,16 @@ async def client(test_session):
 
     async with AsyncClient(app=app, base_url="http://test") as test_client:
         yield test_client
+
+
+# CRUD fixtures
+@pytest_asyncio.fixture(scope="function")
+async def fake_cats(test_session):
+    stmt = insert(Cats).values(
+        [
+            {"name": "Barsik", "color": "black", "tail_length": 12, "whiskers_length": 7},
+            {"name": "Vasya", "color": "red", "tail_length": 8, "whiskers_length": 3},
+        ]
+    )
+    await test_session.execute(stmt)
+    await test_session.commit()
