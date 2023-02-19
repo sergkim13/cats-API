@@ -2,8 +2,8 @@ from http import HTTPStatus
 
 from fastapi import HTTPException
 from sqlalchemy import asc, desc, func, select
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database.models import Cats
 from src.schemas.cats import Cat

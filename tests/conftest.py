@@ -11,6 +11,8 @@ from src.main import app
 
 # Test database fixtures
 SQLALCHEMY_TEST_DATABASE_URL = "postgresql+asyncpg://test:test@localhost:5433/test"
+CAT_1 = {"name": "Barsik", "color": "black", "tail_length": 12, "whiskers_length": 7}
+CAT_2 = {"name": "Vasya", "color": "red", "tail_length": 8, "whiskers_length": 3}
 
 
 # Test database fixtures
@@ -56,12 +58,14 @@ async def client(test_session):
 
 # CRUD fixtures
 @pytest_asyncio.fixture(scope="function")
+async def fake_cat(test_session):
+    stmt = insert(Cats).values([CAT_1])
+    await test_session.execute(stmt)
+    await test_session.commit()
+
+
+@pytest_asyncio.fixture(scope="function")
 async def fake_cats(test_session):
-    stmt = insert(Cats).values(
-        [
-            {"name": "Barsik", "color": "black", "tail_length": 12, "whiskers_length": 7},
-            {"name": "Vasya", "color": "red", "tail_length": 8, "whiskers_length": 3},
-        ]
-    )
+    stmt = insert(Cats).values([CAT_1, CAT_2])
     await test_session.execute(stmt)
     await test_session.commit()
