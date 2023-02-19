@@ -1,13 +1,13 @@
 from enum import Enum
 
 from fastapi import Query
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class CatColor(str, Enum):
     black = "black"
-    white = " white"
-    black_and_white = " black & white"
+    white = "white"
+    black_and_white = "black & white"
     red = "red"
     red_and_white = "red & white"
     red_and_black_and_white = "red & black & white"
@@ -20,8 +20,19 @@ class CatsQuery(BaseModel):
     limit: int | None = Query(default=None, ge=1)
 
 
-class CatCreate(BaseModel):
+class Cat(BaseModel):
     name: str
     color: CatColor
-    tail_length: int
-    whiskers_length: int
+    tail_length: int = Field(ge=1)
+    whiskers_length: int = Field(ge=1)
+
+    class Config:
+        orm_mode = True
+        schema_extra = {
+            "example": {
+                "name": "Masyanya",
+                "color": "black & white",
+                "tail_length": 12,
+                "whiskers_length": 7,
+            },
+        }
