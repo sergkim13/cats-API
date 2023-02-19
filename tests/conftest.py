@@ -12,6 +12,8 @@ from src.main import app
 # Test database fixtures
 SQLALCHEMY_TEST_DATABASE_URL = "postgresql+asyncpg://test:test@localhost:5433/test"
 CAT_1 = {"name": "Barsik", "color": "black", "tail_length": 12, "whiskers_length": 7}
+CAT_1_PATCH = {"color": "red", "tail_length": 11}
+CAT_1_UPDATED = {"name": "Barsik", "color": "red", "tail_length": 11, "whiskers_length": 7}
 CAT_2 = {"name": "Vasya", "color": "red", "tail_length": 8, "whiskers_length": 3}
 
 

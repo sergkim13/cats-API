@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 import pytest
+
 from tests.conftest import CAT_1
 
 
