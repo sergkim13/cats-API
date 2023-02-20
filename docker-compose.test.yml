@@ -1,21 +1,41 @@
 version: '3.8'
 
 services:
+
+  cats_api:
+    container_name: cats_api
+    env_file:
+      - .env.example
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: >
+      sh -c "
+        SQLALCHEMY_SILENCE_UBER_WARNING=1 pytest -vv
+      "
+    networks:
+      - test_network
+    ports:
+      - "8080:8080"
+    depends_on:
+      test_postgres_db:
+        condition: service_healthy
+
   test_postgres_db:
     container_name: test_postgres_db
     image: postgres:15.1-alpine
     volumes:
       - test-db-data:/var/lib/postgresql/data/
     environment:
-      POSTGRES_DB: test
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
-    ports:
-      - "5433:5432"
+      POSTGRES_DB: ${TEST_DB_NAME}
+      POSTGRES_USER: ${TEST_DB_USER}
+      POSTGRES_PASSWORD: ${TEST_DB_PASS}
+    expose:
+      - ${TEST_DB_PORT}
     networks:
       - test_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${TEST_DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${TEST_DB_USER} -d ${TEST_DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5

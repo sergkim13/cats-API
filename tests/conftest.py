@@ -5,12 +5,21 @@ from httpx import AsyncClient
 from sqlalchemy import insert
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
+from src.config_settings.config import (
+    TEST_DB_HOST,
+    TEST_DB_NAME,
+    TEST_DB_PASS,
+    TEST_DB_PORT,
+    TEST_DB_USER,
+)
 from src.database.database_settings import get_session
 from src.database.models import Base, Cats
 from src.main import app
 
 # Test database fixtures
-SQLALCHEMY_TEST_DATABASE_URL = "postgresql+asyncpg://test:test@localhost:5433/test"
+SQLALCHEMY_TEST_DATABASE_URL = (
+    f"postgresql+asyncpg://{TEST_DB_USER}:{TEST_DB_PASS}@{TEST_DB_HOST}:{TEST_DB_PORT}/{TEST_DB_NAME}"
+)
 CAT_1 = {"name": "Barsik", "color": "black", "tail_length": 12, "whiskers_length": 7}
 CAT_1_PATCH = {"color": "red", "tail_length": 11}
 CAT_1_UPDATED = {"name": "Barsik", "color": "red", "tail_length": 11, "whiskers_length": 7}

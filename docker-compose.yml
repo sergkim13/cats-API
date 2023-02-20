@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  cats_api:
+    container_name: cats_api
+    env_file:
+      - .env.example
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: >
+      sh -c "
+        echo 'Starting project...' &&
+        uvicorn src.main:app --host 0.0.0.0 --port 8080 --reload
+      "
+    networks:
+      - prod_network
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+
+
+  postgres_db:
+    container_name: postgres_db
+    image: yzh44yzh/wg_forge_backend_env:1.1
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    networks:
+      - prod_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  prod_network:
+    name: prod_network
+    driver: bridge
+
+volumes:
+  db-data:
