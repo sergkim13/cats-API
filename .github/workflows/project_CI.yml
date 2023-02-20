@@ -27,14 +27,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: 'Create env file'
-      run: |
-        touch .env
-        echo TEST_DB_USER=test >> .env
-        echo TEST_DB_PASS=test >> .env
-        echo TEST_DB_HOST=localhost >> .env
-        echo TEST_DB_PORT=5432 >> .env
-        echo TEST_DB_NAME=test >> .env
     - uses: actions/setup-python@v3
     - run: pipx install poetry==1.2.2
     - run: make install
@@ -42,11 +34,6 @@ jobs:
     - name: test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.4
       env:
-        TEST_DB_USER: test
-        TEST_DB_PASS: test
-        TEST_DB_HOST: localhost
-        TEST_DB_PORT: 5432
-        TEST_DB_NAME: test
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageCommand: make test-coverage
