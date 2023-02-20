@@ -7,6 +7,9 @@ hooks:
 test:
 	poetry run pytest -vv
 
+test-coverage:
+	poetry run pytest --cov-report term-missing --cov=src --cov-report xml
+
 compose:
 	docker compose --env-file .env.example -p cats_api up -d
 

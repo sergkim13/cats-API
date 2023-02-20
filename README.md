@@ -1,7 +1,37 @@
-# Cats_FastAPI. Тестовое задание от Wargaming.net
+# Cats_FastAPI. [Тестовое задание от Wargaming.net](https://github.com/wgnet/wg_forge_backend)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/2c6bb6810151c51b5238/maintainability)](https://codeclimate.com/github/sergkim13/cats_FastAPI/maintainability)
+
+### Description:
+Cats API allows you to get information about cats. See "Task description" section below for more.
+Made with:
+- FastAPI,
+- PostgreSQL,
+- SQLAlchemy,
+- Pydantic,
+- Alembic,
+- Docker.
+
+### Requirements:
+1. MacOS (prefer) / Linux / Windows10
+2. `Docker`
+3. `Make` utily for MacOS, Linux.
+
+### Install:
+1. Clone repository: `https://github.com/sergkim13/cats_FastAPI.git`
+2. Type `make compose` for running application in docker container. App will be running at http://0.0.0.0:8080. Type `make stop` to stop app container.
+Documentation will be accessed in http://0.0.0.0:8080/docs.
+3. Type `make compose-test` for running tests in docker container. Type `make stop-test` to stop app container.
+4. To count cats by colors:
+`POST http://0.0.0.0:8080/helper/fill_in_cat_color_info`
+5. To count cats statistics:
+`POST http://0.0.0.0:8080/helper/fill_in_cats_stat`
 
 __________
+
+### **Task description**
+<details>
+    <summary>Click to show</summary>
 
 ### Тестовое задание WG Forge (Backend)
 
