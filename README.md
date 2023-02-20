@@ -1,6 +1,8 @@
 # Cats_FastAPI. [Тестовое задание от Wargaming.net](https://github.com/wgnet/wg_forge_backend)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/2c6bb6810151c51b5238/maintainability)](https://codeclimate.com/github/sergkim13/cats_FastAPI/maintainability)
+[![Actions Status](https://github.com/sergkim13/cats-FastAPI/actions/workflows/project_CI.yml/badge.svg)](https://github.com/sergkim13/cats_FastAPI/actions/workflows/project_CI.yml)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2c6bb6810151c51b5238/test_coverage)](https://codeclimate.com/github/sergkim13/cats_FastAPI/test_coverage)
 
 ### Description:
 Cats API allows you to get information about cats. See "Task description" section below for more.
