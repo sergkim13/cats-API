@@ -42,6 +42,11 @@ jobs:
     - name: test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.4
       env:
+        TEST_DB_USER: test
+        TEST_DB_PASS: test
+        TEST_DB_HOST: localhost
+        TEST_DB_PORT: 5432
+        TEST_DB_NAME: test
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageCommand: make test-coverage
