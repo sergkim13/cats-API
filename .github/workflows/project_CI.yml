@@ -37,6 +37,7 @@ jobs:
         echo TEST_DB_NAME=test >> .env
     - uses: actions/setup-python@v3
     - run: pipx install poetry==1.2.2
+    - run: make install
     - run: make hooks
     - name: test & publish code coverage
       uses: paambaati/codeclimate-action@v2.7.4
