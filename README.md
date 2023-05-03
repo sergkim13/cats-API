@@ -1,6 +1,6 @@
 # Cats_FastAPI. [Тестовое задание от Wargaming.net](https://github.com/wgnet/wg_forge_backend)
 
-[![Actions Status](https://github.com/sergkim13/cats_FastAPI/actions/workflows/project_CI.yml/badge.svg)](https://github.com/sergkim13/cats_FastAPI/actions/workflows/project_CI.yml)
+[![Actions Status](https://github.com/sergkim13/cats-API/actions/workflows/project_CI.yml/badge.svg)](https://github.com/sergkim13/cats-API/actions/workflows/project_CI.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2c6bb6810151c51b5238/maintainability)](https://codeclimate.com/github/sergkim13/cats_FastAPI/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2c6bb6810151c51b5238/test_coverage)](https://codeclimate.com/github/sergkim13/cats_FastAPI/test_coverage)
 
@@ -20,7 +20,7 @@ Made with:
 3. `Make` utily for MacOS, Linux.
 
 ### Install:
-1. Clone repository: `https://github.com/sergkim13/cats_FastAPI.git`
+1. Clone repository: `https://github.com/sergkim13/cats-API`
 2. Type `make compose` for running application in docker container. App will be running at http://0.0.0.0:8080. Type `make stop` to stop app container.
 Documentation will be accessed in http://0.0.0.0:8080/docs.
 3. Type `make compose-test` for running tests in docker container. Type `make stop-test` to stop app container.
